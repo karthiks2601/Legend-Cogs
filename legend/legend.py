@@ -283,15 +283,11 @@ class legend:
                 
         clans = sorted(clans, key=lambda clanned: clanned['requiredScore'], reverse=True)
         totalMembers = sum(clans[x]['memberCount'] for x in range(len(clans)))
-
-        embed=discord.Embed(title="", description="Our Family is made up of " + str(self.numClans()) + " clans with a total of " + str(totalMembers) + " members. We have " + str((self.numClans()*50)-totalMembers) + " spots left.", color=0xf1c747)
-        embed.set_author(name="LeGeND Family Clans", url="http://cr-api.com/clan/family/legend", icon_url="https://i.imgur.com/dtSMITE.jpg")
-        embed.set_footer(text=credits, icon_url=creditIcon)
-
-        foundClan = False
+        
+         foundClan = False
+         totalWaiting = 0
         for x in range(0, len(clans)):
-
-            numWaiting = 0
+		numWaiting = 0
             personalbest = 0
             bonustitle = None
             
@@ -301,8 +297,15 @@ class legend:
                     personalbest = self.c[clankey]['personalbest']
                     bonustitle = self.c[clankey]['bonustitle']
                     emoji = self.c[clankey]['emoji']
+                    totalWaiting += numWaiting
                     break
 
+
+        embed=discord.Embed(title="", description="Our Family is made up of " + str(self.numClans()) + " clans with a total of " + str(totalMembers) + " members. We have " + str((self.numClans()*50)-totalMembers) + " spots left and " + str(totalWaiting) + " on the waiting list", color=0xf1c747)
+        embed.set_author(name="LeGeND Family Clans", url="http://cr-api.com/clan/family/legend", icon_url="https://i.imgur.com/dtSMITE.jpg")
+        embed.set_footer(text=credits, icon_url=creditIcon)
+
+       
             if numWaiting > 0:
                 title = "["+str(numWaiting)+" Waiting] "
             else:
@@ -613,27 +616,27 @@ class legend:
         message = ""
 
         if cr_members_with_no_player_tag:
-            message += "\n\n:warning: **("+str(len(cr_members_with_no_player_tag))+")** Players in **" + clan_name + "**, but have **NO** tags saved or have **NOT** joined discord: ```• "
+            message += "\n\n:warning: Players in **" + clan_name + "**, but have **NO** tags saved or have **NOT** joined discord: ```• "
             message += "\n• ".join(cr_members_with_no_player_tag)
             message += "```"
 
         if d_members_with_no_player_tag:
-            message += "\n\n:warning: **("+str(len(d_members_with_no_player_tag))+")** Players with **" + clan_name + "** role, but have **NO** tags saved: ```• "
+            message += "\n\n:warning: Players with **" + clan_name + "** role, but have **NO** tags saved: ```• "
             message += "\n• ".join(d_members_with_no_player_tag)
             message += "```"
 
         if d_members_not_in_clan:
-            message += "\n\n:warning: **("+str(len(d_members_not_in_clan))+")** Players with **" + clan_name + "** role, but have **NOT** joined the clan: ```• "
+            message += "\n\n:warning: Players with **" + clan_name + "** role, but have **NOT** joined the clan: ```• "
             message += "\n• ".join(d_members_not_in_clan)
             message += "```"
 
         if d_members_without_role:
-            message += "\n\n:warning: **("+str(len(d_members_without_role))+")** Players in **" + clan_name + "**, but **DO NOT** have the clan role: ```• "
+            message += "\n\n:warning: Players in **" + clan_name + "**, but **DO NOT** have the clan role: ```• "
             message += "\n• ".join(d_members_without_role)
             message += "```"
 
         if cr_members_with_less_trophies:
-            message += "\n\n:warning: **("+str(len(cr_members_with_less_trophies))+")** Players in **" + clan_name + "**, but **DO NOT** meet the trophy requirements: ```• "
+            message += "\n\n:warning: Players in **" + clan_name + "**, but **DO NOT** meet the trophy requirements: ```• "
             message += "\n• ".join(cr_members_with_less_trophies)
             message += "```"
 
