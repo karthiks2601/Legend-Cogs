@@ -502,7 +502,7 @@ class legend:
             await self.bot.say(e)
             return
         except:
-            await self.bot.say("You must assosiate a tag with this member first using ``!save clash #tag @member``")
+            await self.bot.say("You must assosiate a tag with this member first using ``!save clash #tag @member``. If done already, please retry this command after some time.")
             return
 
         allowed = False
@@ -653,7 +653,7 @@ class legend:
             await self.bot.say(e)
             return
         except:
-            await self.bot.say("You must assosiate a tag with this member first using ``!save clash #tag @member``")
+            await self.bot.say("You must assosiate a tag with this member first using ``!save clash #tag @member``. If done already, please retry this command after some time.")
             return
 
         membership = True
@@ -688,7 +688,7 @@ class legend:
                 raise
             await self.bot.say(member.mention + " You have been added to the waiting list for **"+ clan_name + "**. We will mention you when a spot is available.")
         else:
-            await self.bot.say("Cannot add you to the waiting list, You are already a part of a clan in the family.")
+            await self.bot.say("Cannot add you to the waiting list, You are already a part of a clan in the family. Speak to your leader and the leader of the clan you want to move to if you want to switch clans.")
 
     @commands.command(pass_context=True, no_pm=True)
     async def remove(self, ctx, member: discord.Member, clankey):
